@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #eeeeea;
+  --foreground: #11110f;
+  --slide-bg: #fbfbf7;
+  --muted: #6b6d66;
+  --muted-soft: #a6a89f;
+  --line: #d7d8cf;
+  --line-strong: #bfc1b8;
+  --accent: #286857;
+  --accent-ink: #19463c;
+  --accent-soft: #e3ece7;
+  --code-bg: #f1f2ec;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Segoe UI", sans-serif;
+  font-weight: 520;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2 {
+  text-wrap: balance;
+  word-break: keep-all;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slide-stage {
+  aspect-ratio: 16 / 9;
+  width: min(100vw, calc(100vh * 16 / 9));
+}
+
+.prompt-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-soft) transparent;
+}
+
+.slide-display-xl {
+  font-size: 7.75rem;
+  line-height: 0.94;
+  font-weight: 720;
+}
+
+.slide-display-lg {
+  font-size: 6.6rem;
+  line-height: 0.96;
+  font-weight: 720;
+}
+
+.slide-display-md {
+  font-size: 5.6rem;
+  line-height: 0.98;
+  font-weight: 710;
+}
+
+.slide-subtitle {
+  font-size: 2.85rem;
+  line-height: 1.12;
+  font-weight: 680;
+}
+
+.slide-label {
+  font-size: 0.78rem;
+  font-weight: 760;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.slide-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 2rem;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .slide-display-xl {
+    font-size: 4.5rem;
+  }
+
+  .slide-display-lg {
+    font-size: 4rem;
+  }
+
+  .slide-display-md {
+    font-size: 3.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 2rem;
+  }
+
+  .slide-grid {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+  }
 }
