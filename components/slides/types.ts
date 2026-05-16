@@ -6,6 +6,7 @@ export type SlideKind =
   | "demo"
   | "flow"
   | "comparison"
+  | "scene"
   | "closing";
 
 export type Slide = {

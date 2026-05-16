@@ -14,11 +14,35 @@ type SlideRendererProps = {
 
 export function SlideRenderer({ slide }: SlideRendererProps) {
   if (slide.kind === "title") {
+    if (!slide.image) {
+      return (
+        <div className="flex w-full flex-1 flex-col items-center justify-center text-center">
+          <p className="mb-7 flex items-center gap-3 slide-label text-[var(--accent)]">
+            <span className="h-2 w-2 bg-[var(--accent)]" />
+            Codex Tutorial
+          </p>
+          <h1 className="slide-display-xl max-w-6xl whitespace-pre-line text-[var(--foreground)]">
+            {slide.title}
+          </h1>
+          {slide.content ? (
+            <p className="mt-9 text-[2rem] font-bold leading-tight text-[var(--muted)]">
+              {slide.content}
+            </p>
+          ) : null}
+          {slide.caption ? (
+            <p className="mt-7 font-mono text-[1.45rem] font-bold leading-tight text-[var(--accent)]">
+              {slide.caption}
+            </p>
+          ) : null}
+        </div>
+      );
+    }
+
     return (
       <div className="slide-grid items-end">
         <div className={slide.image ? "col-span-full lg:col-span-6" : "col-span-full lg:col-span-8"}>
           <SectionKicker>Codex Tutorial</SectionKicker>
-          <h1 className="slide-display-xl max-w-6xl text-[var(--foreground)]">
+          <h1 className="slide-display-xl max-w-6xl whitespace-pre-line text-[var(--foreground)]">
             {slide.title}
           </h1>
           {slide.image && slide.content ? (
@@ -51,6 +75,32 @@ export function SlideRenderer({ slide }: SlideRendererProps) {
   }
 
   if (slide.kind === "statement") {
+    if (slide.image) {
+      return (
+        <div className="slide-grid items-center">
+          <div className="col-span-full lg:col-span-5">
+            <SectionKicker>{slide.section}</SectionKicker>
+            <h1 className="slide-display-md text-[var(--foreground)]">
+              {slide.title}
+            </h1>
+            {slide.content ? (
+              <p className="mt-8 max-w-xl text-[2.05rem] font-bold leading-[1.14] text-[var(--muted)]">
+                {slide.content}
+              </p>
+            ) : null}
+            {slide.bullets?.length ? (
+              <div className="mt-9">
+                <BulletList compact items={slide.bullets} />
+              </div>
+            ) : null}
+          </div>
+          <div className="col-span-full lg:col-span-7">
+            <SlideImage alt={slide.image.alt} src={slide.image.src} />
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="slide-grid items-center">
         <div className="col-span-full lg:col-span-8">
@@ -67,6 +117,16 @@ export function SlideRenderer({ slide }: SlideRendererProps) {
         <div className="col-span-full lg:col-span-4">
           <BulletList items={slide.bullets} />
         </div>
+      </div>
+    );
+  }
+
+  if (slide.kind === "scene") {
+    return (
+      <div className="w-full">
+        {slide.image ? (
+          <SlideImage alt={slide.image.alt} src={slide.image.src} />
+        ) : null}
       </div>
     );
   }
