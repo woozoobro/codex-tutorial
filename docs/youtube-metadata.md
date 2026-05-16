@@ -10,7 +10,41 @@
 ## 추천 제목
 
 ```text
-1시간 안에 Codex 97% 이해하기: 아이디어에서 배포까지
+OpenAI Codex 처음 쓰는 법: 아이디어에서 배포까지 1시간 입문
+```
+
+## 제목 A/B 테스트 후보
+
+YouTube A/B 테스트에 넣은 3개 제목. 테스트 결과가 애매하면 첫 번째 제목이 기본값으로 남을 수 있으므로 가장 안전한 검색형 제목을 1번에 둔다.
+
+```text
+1. OpenAI Codex 처음 쓰는 법: 아이디어에서 배포까지 1시간 입문
+2. ChatGPT처럼 쓰면 손해입니다. Codex는 이렇게 씁니다
+3. Codex로 프로젝트 하나 끝내기: 리서치, 이미지, 웹사이트, 배포까지
+```
+
+적용 상태: YouTube Studio에서 위 3개 제목으로 A/B 테스트 설정 완료.
+
+## 실제 업로드 설명란
+
+```text
+OpenAI Codex를 처음 쓰는 분들을 위한 1시간 실전 입문 영상입니다.
+아이디어 하나를 문서, 리서치, 이미지 목업, Next.js 랜딩 페이지, Vercel 배포까지 실제 프로젝트 흐름으로 이어갑니다.
+
+
+00:00 OpenAI Codex로 뭘 할 수 있을까?
+01:20 Codex 설치와 로그인
+01:50 Codex 기본 화면과 모델 설정
+04:20 채팅으로 아이데이션하기
+08:40 AGENTS.md로 프로젝트 맥락 저장
+13:37 GitHub 연결, 커밋, 푸시
+19:37 Codex 웹 리서치로 시장 조사
+25:30 AI 이미지 생성으로 제품 목업 만들기
+31:05 Gmail 플러그인으로 메일 초안 만들기
+33:16 Next.js 랜딩 페이지 만들기
+45:17 Vercel 배포와 사이트 확인
+
+#codex #openaicodex #ai에이전트 #ai코딩
 ```
 
 ## 제목 후보
@@ -43,7 +77,7 @@
 
 - `97% 마스터하기`는 클릭감은 좋지만 과장처럼 보일 수 있다.
 - `97% 이해하기`, `97% 감 잡기`, `97% 시작하기`가 입문 영상에는 더 안전하다.
-- 현재 원픽은 `1시간 안에 Codex 97% 이해하기: 아이디어에서 배포까지`.
+- 현재 원픽은 `OpenAI Codex 처음 쓰는 법: 아이디어에서 배포까지 1시간 입문`.
 
 ## 설명란 초안
 
@@ -99,24 +133,26 @@ Codex를 처음 써보는 분들을 위한 실전 입문 영상입니다.
 
 실제 편집본 길이가 나오면 타임스탬프만 조정한다. 아래는 55분 내외 러프컷 기준이다.
 
+챕터명은 설명란 텍스트로도 노출되므로 검색 키워드를 자연스럽게 포함한다. 단, 키워드 나열처럼 보이지 않게 짧게 유지한다. 핵심 키워드는 `Codex`, `AGENTS.md`, `GitHub`, `웹 리서치`, `이미지 생성`, `Gmail`, `Plan mode`, `Next.js`, `Vercel 배포`.
+
 ```text
-00:00 오프닝: Codex로 뭘 할 수 있을까?
+00:00 OpenAI Codex로 뭘 할 수 있을까?
 02:10 Codex 설치와 로그인
-05:00 기본 화면, 모델, 인텔리전스 설정
-08:00 채팅에서 아이데이션 시작하기
+05:00 Codex 기본 화면과 모델 설정
+08:00 채팅으로 아이데이션하기
 12:00 Shh-eat 프로젝트 만들기
-16:00 AGENTS.md로 프로젝트 맥락 저장하기
+16:00 AGENTS.md로 프로젝트 맥락 저장
 20:00 GitHub 연결, 커밋, 푸시
-25:00 웹 리서치로 시장 조사 문서 만들기
+25:00 Codex 웹 리서치로 시장 조사
 30:00 브랜드 전략 문서 만들기
-33:00 파일 멘션으로 문서 이어서 만들기
-36:00 이미지 생성으로 제품 목업 만들기
+33:00 파일 멘션으로 문서 이어가기
+36:00 AI 이미지 생성으로 제품 목업 만들기
 40:00 Gmail 플러그인으로 메일 초안 만들기
-43:00 Plan mode로 랜딩 페이지 작업 계획하기
-46:00 Next.js 랜딩 페이지 만들고 로컬 확인하기
-51:00 주석 모드로 화면 피드백하기
-54:00 Vercel로 배포하기
-57:00 오늘 만든 흐름 정리와 다음 편 예고
+43:00 Plan mode로 작업 계획 세우기
+46:00 Next.js 랜딩 페이지 만들기
+51:00 인앱 브라우저와 주석 모드
+54:00 Vercel 배포와 사이트 확인
+57:00 Codex 입문 흐름 정리
 ```
 
 ## 태그
@@ -138,6 +174,145 @@ Codex, OpenAI Codex, 코덱스, ChatGPT Codex, AI 에이전트, AI agent, AI 코
 3. AI 에이전트 실전 입문
 4. 채팅이 아니라 결과물을 만듭니다
 5. Codex로 1시간 프로젝트
+
+## 제목별 썸네일 A/B 테스트 설계
+
+공통 원칙:
+
+- 썸네일은 제목과 같은 말을 반복하기보다 클릭 이유를 보완한다.
+- 3개 썸네일은 각각 `입문형`, `비교형`, `결과물형`으로 다른 훅을 테스트한다.
+- GPT Image에서 한글 텍스트가 깨질 수 있으므로, 배경 이미지를 만든 뒤 최종 문구는 Figma, Canva, Keynote 등에서 직접 얹는 것이 안전하다.
+- 썸네일 문구는 모바일에서 보이도록 2-3줄, 10-14자 내외로 유지한다.
+
+생성 이미지 저장 경로:
+
+```text
+public/youtube-thumbnails/codex-intro-01/beginner-codex-first.png
+public/youtube-thumbnails/codex-intro-01/chatgpt-comparison-chat-only-loss.png
+public/youtube-thumbnails/codex-intro-01/project-complete-end-to-end.png
+public/youtube-thumbnails/codex-intro-01/project-complete-end-to-end-v2.png
+```
+
+### A안: 검색형 / 입문형
+
+매칭 제목:
+
+```text
+OpenAI Codex 처음 쓰는 법: 아이디어에서 배포까지 1시간 입문
+```
+
+권장 썸네일 문구:
+
+```text
+Codex
+처음이면
+이렇게
+```
+
+GPT Image 프롬프트:
+
+```text
+Create a 16:9 YouTube thumbnail background for a Korean tutorial video about OpenAI Codex.
+
+Concept: beginner-friendly, practical AI coding agent tutorial. The viewer should immediately feel "this is the first video to watch after opening Codex."
+
+Scene:
+- A modern laptop or desktop monitor showing a clean AI coding workspace
+- Visible project files, a simple document, a browser preview, and a deploy checkmark as visual hints
+- A clear workflow feeling: idea -> docs -> website -> deploy
+- No real brand logos except the plain word "Codex" if needed
+
+Composition:
+- Leave a large clean text area on the left side for Korean headline text
+- Put the laptop/workspace visual on the right side
+- High contrast, sharp lighting, modern Korean tech YouTube style
+- Dark neutral background with white text area and one strong accent color
+- No clutter, no tiny text, no fake unreadable UI, no distorted letters
+
+If text is rendered in the image, use this exact Korean headline only:
+"Codex 처음이면 이렇게"
+Make the text huge, bold, and readable on mobile.
+```
+
+### B안: 추천 피드 / 비교형
+
+매칭 제목:
+
+```text
+ChatGPT처럼 쓰면 손해입니다. Codex는 이렇게 씁니다
+```
+
+권장 썸네일 문구:
+
+```text
+채팅만 하면
+손해
+```
+
+GPT Image 프롬프트:
+
+```text
+Create a high-click 16:9 YouTube thumbnail background for a Korean tech tutorial about OpenAI Codex.
+
+Concept: Codex is not just another chat tool. It turns chat into real project outputs. Show a strong visual contrast between "just chatting" and "building real results."
+
+Scene:
+- Left side: a simple chat bubble interface, minimal and flat
+- Right side: a rich project workspace with files, code, docs, browser preview, and a deployment success checkmark
+- Add a subtle arrow or motion from chat to real project outputs
+- The right side should feel more valuable, complete, and productive
+
+Composition:
+- Leave a large clean text area across the top or left for Korean headline text
+- Use strong contrast between the plain chat side and the productive Codex workspace side
+- Energetic but professional Korean tech YouTube thumbnail style
+- Avoid scary hacker visuals, sci-fi effects, and messy code rain
+- No fake logos, no tiny text, no unreadable UI gibberish
+
+If text is rendered in the image, use this exact Korean headline only:
+"채팅만 하면 손해"
+Make the text huge, bold, and readable on mobile.
+```
+
+### C안: 결과물 / 프로젝트 완주형
+
+매칭 제목:
+
+```text
+Codex로 프로젝트 하나 끝내기: 리서치, 이미지, 웹사이트, 배포까지
+```
+
+권장 썸네일 문구:
+
+```text
+프로젝트
+하나 끝내기
+```
+
+GPT Image 프롬프트:
+
+```text
+Create a polished 16:9 YouTube thumbnail background for a Korean tutorial about completing one full project with OpenAI Codex.
+
+Concept: one idea becomes a finished project. The thumbnail should show a clear end-to-end workflow: research, documents, image mockup, website, and deployment.
+
+Scene:
+- A central laptop or large monitor showing a finished landing page preview
+- Around it, show 4 clean output cards or panels: research document, brand strategy document, product mockup image, deploy success
+- The visual should feel like a completed practical workflow, not a generic coding tutorial
+- Include a small simple "Codex" label near the workspace if it looks natural
+
+Composition:
+- Leave a large clean text area on the left or upper left for Korean headline text
+- Keep the output cards large enough to be understood at thumbnail size
+- Modern, bright, premium productivity aesthetic
+- Use strong contrast and clear hierarchy
+- No clutter, no tiny labels, no fake detailed text, no distorted UI
+
+If text is rendered in the image, use this exact Korean headline only:
+"프로젝트 하나 끝내기"
+Make the text huge, bold, and readable on mobile.
+```
 
 ## 고정 댓글 초안
 
