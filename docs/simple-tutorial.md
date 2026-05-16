@@ -491,9 +491,8 @@ Codex 공식 문서를 기반으로 질문해보는 것도 좋다.
 ---
 
 ### 지금 빠진 내용.
-- 플랜모드
 - context window
 - skills
 - subagents
-- mcp나 커넥터, 플러그인
+- mcp나 커넥터
 - 샌드박스 권한관련
