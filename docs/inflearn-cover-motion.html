@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>OpenAI Codex Inflearn Cover Motion</title>
+  <style>
+    :root {
+      --w: 1200px;
+      --h: 781px;
+      --bg: #0b0f14;
+      --grid: rgba(31, 41, 55, 0.48);
+      --teal: #99f6e4;
+      --mint: #5eead4;
+      --green: #22c55e;
+      --cyan: #38bdf8;
+      --panel: #111827;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      min-height: 100vh;
+      margin: 0;
+      background: #05070a;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      cursor: none;
+    }
+
+    .stage {
+      position: relative;
+      width: var(--w);
+      height: var(--h);
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid #1f2937;
+      border-radius: 36px;
+      isolation: isolate;
+      transform-origin: center;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.38;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 140px 100px;
+      background-position: 80px 54px;
+      animation: grid-drift 3s linear infinite;
+    }
+
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(520px 420px at 84% 18%, rgba(34, 197, 94, 0.42), rgba(20, 184, 166, 0.18) 42%, transparent 72%),
+        radial-gradient(430px 300px at 18% 84%, rgba(56, 189, 248, 0.3), transparent 72%);
+      animation: glow-breathe 3s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .flow-lines {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      opacity: 0.95;
+    }
+
+    .scan-beam {
+      position: absolute;
+      top: -170px;
+      left: -540px;
+      width: 760px;
+      height: 1180px;
+      background: linear-gradient(90deg, transparent, rgba(94, 234, 212, 0.12), rgba(34, 197, 94, 0.2), transparent);
+      filter: blur(4px);
+      mix-blend-mode: screen;
+      opacity: 0;
+      transform: rotate(28deg) translateX(-280px);
+      animation: beam-sweep 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+      pointer-events: none;
+    }
+
+    .ring-field {
+      position: absolute;
+      top: 58px;
+      right: 42px;
+      width: 540px;
+      height: 540px;
+      pointer-events: none;
+      opacity: 0.88;
+    }
+
+    .ring-field span {
+      position: absolute;
+      inset: 50%;
+      width: 130px;
+      height: 130px;
+      border: 1px solid rgba(94, 234, 212, 0.16);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) scale(0.72);
+      animation: ring-pulse 3s ease-out infinite;
+    }
+
+    .ring-field span:nth-child(2) {
+      animation-delay: 0.34s;
+      border-color: rgba(34, 197, 94, 0.14);
+    }
+
+    .ring-field span:nth-child(3) {
+      animation-delay: 0.68s;
+      border-color: rgba(56, 189, 248, 0.12);
+    }
+
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--mint);
+      box-shadow: 0 0 22px rgba(94, 234, 212, 0.72);
+      opacity: 0;
+      animation: particle-run 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    .particle:nth-child(1) {
+      left: 206px;
+      top: 492px;
+    }
+
+    .particle:nth-child(2) {
+      left: 386px;
+      top: 420px;
+      width: 7px;
+      height: 7px;
+      background: #38bdf8;
+      animation-delay: 0.18s;
+    }
+
+    .particle:nth-child(3) {
+      left: 562px;
+      top: 340px;
+      width: 11px;
+      height: 11px;
+      background: #22c55e;
+      animation-delay: 0.36s;
+    }
+
+    .particle:nth-child(4) {
+      left: 736px;
+      top: 258px;
+      width: 8px;
+      height: 8px;
+      animation-delay: 0.54s;
+    }
+
+    .particle:nth-child(5) {
+      left: 930px;
+      top: 218px;
+      width: 10px;
+      height: 10px;
+      background: #22c55e;
+      animation-delay: 0.72s;
+    }
+
+    .main-line {
+      stroke-dasharray: 940;
+      stroke-dashoffset: 940;
+      animation: line-write 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    .soft-line-a {
+      animation: soft-float-a 3s ease-in-out infinite;
+    }
+
+    .soft-line-b {
+      animation: soft-float-b 3s ease-in-out infinite;
+    }
+
+    .copy {
+      position: absolute;
+      left: 92px;
+      top: 128px;
+      width: 560px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin: 0 0 4px;
+      color: var(--teal);
+      font-size: 42px;
+      line-height: 1.18;
+      font-weight: 850;
+      letter-spacing: 0;
+      text-shadow: 0 0 28px rgba(94, 234, 212, 0.18);
+    }
+
+    .codex-title {
+      position: relative;
+      display: inline-block;
+      margin: 0;
+      color: transparent;
+      font-size: 148px;
+      line-height: 0.9;
+      font-weight: 950;
+      letter-spacing: -3px;
+      background: linear-gradient(90deg, #ffffff 0%, #ffffff 45%, #d9fff8 64%, #99f6e4 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        0 0 34px rgba(94, 234, 212, 0.24),
+        0 0 96px rgba(20, 184, 166, 0.16);
+      animation: codex-pop 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    .codex-title::after {
+      content: "";
+      position: absolute;
+      inset: -8px -44px -8px -26px;
+      background: linear-gradient(90deg, transparent, rgba(153, 246, 228, 0.26), transparent);
+      transform: translateX(-115%);
+      animation: text-sweep 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .workflow {
+      margin: 22px 0 0 4px;
+      color: white;
+      font-size: 54px;
+      line-height: 1.05;
+      font-weight: 950;
+      letter-spacing: -0.8px;
+      opacity: 0.95;
+    }
+
+    .sub {
+      margin: 22px 0 0 4px;
+      color: var(--teal);
+      font-size: 44px;
+      line-height: 1.1;
+      font-weight: 850;
+      letter-spacing: 0;
+      opacity: 0.96;
+    }
+
+    .panel {
+      position: absolute;
+      top: 190px;
+      right: 138px;
+      width: 300px;
+      height: 400px;
+      padding: 26px 22px;
+      border: 1px solid #263244;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #111827, #0f172a);
+      box-shadow:
+        0 30px 90px rgba(0, 0, 0, 0.28),
+        0 0 90px rgba(20, 184, 166, 0.08);
+      animation: panel-arrive 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(94, 234, 212, 0.44), transparent 38%, rgba(34, 197, 94, 0.34));
+      opacity: 0;
+      z-index: -1;
+      animation: panel-flash 3s ease-in-out infinite;
+    }
+
+    .task {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      column-gap: 18px;
+      align-items: center;
+      height: 58px;
+      padding: 0 22px;
+      margin-bottom: 28px;
+      border: 1px solid #1f2937;
+      border-radius: 16px;
+      background: #0b1220;
+      opacity: 0.95;
+    }
+
+    .dot {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green);
+      transform: scale(0.8);
+      animation: dot-pop 3s ease-in-out infinite;
+    }
+
+    .task:nth-child(2) .dot {
+      background: #2dd4bf;
+      animation-delay: 0.2s;
+    }
+
+    .task:nth-child(3) .dot {
+      background: var(--cyan);
+      animation-delay: 0.4s;
+    }
+
+    .bars {
+      display: grid;
+      gap: 8px;
+    }
+
+    .bar {
+      display: block;
+      height: 12px;
+      border-radius: 999px;
+      background: #d1d5db;
+      opacity: 0.92;
+      transform-origin: left center;
+      animation: bar-fill 3s ease-in-out infinite;
+    }
+
+    .bar.small {
+      height: 8px;
+      width: 62%;
+      background: #64748b;
+    }
+
+    .task:nth-child(1) .bar:first-child {
+      width: 152px;
+    }
+
+    .task:nth-child(2) .bar:first-child {
+      width: 134px;
+    }
+
+    .task:nth-child(3) .bar:first-child {
+      width: 166px;
+    }
+
+    .done {
+      position: relative;
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      column-gap: 28px;
+      align-items: center;
+      height: 88px;
+      padding: 0 24px;
+      border: 1px solid #115e59;
+      border-radius: 16px;
+      background: #082f2a;
+      box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.05);
+      animation: done-glow 3s ease-in-out infinite;
+    }
+
+    .check {
+      width: 72px;
+      height: 62px;
+    }
+
+    .check path {
+      stroke: var(--mint);
+      stroke-width: 10;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 118;
+      stroke-dashoffset: 118;
+      animation: check-draw 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    .done .bar:first-child {
+      width: 104px;
+      background: #ccfbf1;
+    }
+
+    .done .bar.small {
+      width: 74px;
+      background: var(--mint);
+      opacity: 0.82;
+    }
+
+    @keyframes beam-sweep {
+      0%,
+      10% {
+        opacity: 0;
+        transform: rotate(28deg) translateX(-280px);
+      }
+      34% {
+        opacity: 0.92;
+      }
+      72% {
+        opacity: 0.26;
+      }
+      100% {
+        opacity: 0;
+        transform: rotate(28deg) translateX(1640px);
+      }
+    }
+
+    @keyframes ring-pulse {
+      0%,
+      20% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+      }
+      38% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(3.8);
+      }
+    }
+
+    @keyframes particle-run {
+      0%,
+      18% {
+        opacity: 0;
+        transform: translate3d(-40px, 28px, 0) scale(0.74);
+      }
+      42% {
+        opacity: 1;
+      }
+      78% {
+        opacity: 0.9;
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(210px, -92px, 0) scale(1.28);
+      }
+    }
+
+    @keyframes codex-pop {
+      0% {
+        filter: brightness(0.92);
+        transform: translate3d(-8px, 0, 0) scale(0.985);
+      }
+      24%,
+      100% {
+        filter: brightness(1.06);
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @keyframes grid-drift {
+      0% {
+        background-position: 80px 54px;
+      }
+      100% {
+        background-position: 96px 54px;
+      }
+    }
+
+    @keyframes glow-breathe {
+      0%,
+      100% {
+        opacity: 0.92;
+        transform: scale(1);
+      }
+      55% {
+        opacity: 1;
+        transform: scale(1.018);
+      }
+    }
+
+    @keyframes line-write {
+      0% {
+        stroke-dashoffset: 940;
+        opacity: 0.2;
+      }
+      24% {
+        opacity: 0.85;
+      }
+      72%,
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+    }
+
+    @keyframes soft-float-a {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.14;
+      }
+      55% {
+        transform: translate3d(10px, -8px, 0);
+        opacity: 0.22;
+      }
+    }
+
+    @keyframes soft-float-b {
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0.12;
+      }
+      55% {
+        transform: translate3d(-10px, 8px, 0);
+        opacity: 0.18;
+      }
+    }
+
+    @keyframes text-sweep {
+      0%,
+      18% {
+        transform: translateX(-115%);
+        opacity: 0;
+      }
+      38% {
+        opacity: 1;
+      }
+      68%,
+      100% {
+        transform: translateX(118%);
+        opacity: 0;
+      }
+    }
+
+    @keyframes panel-arrive {
+      0% {
+        transform: translate3d(22px, 0, 0) scale(0.985);
+      }
+      28% {
+        transform: translate3d(0, 0, 0) scale(1.012);
+      }
+      42%,
+      100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @keyframes panel-flash {
+      0%,
+      48% {
+        opacity: 0;
+      }
+      62% {
+        opacity: 0.42;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes dot-pop {
+      0%,
+      18% {
+        transform: scale(0.72);
+        opacity: 0.62;
+      }
+      38%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bar-fill {
+      0%,
+      20% {
+        transform: scaleX(0.42);
+      }
+      54%,
+      100% {
+        transform: scaleX(1);
+      }
+    }
+
+    @keyframes done-glow {
+      0%,
+      55% {
+        box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.04), 0 0 0 rgba(94, 234, 212, 0);
+      }
+      72% {
+        box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.1), 0 0 32px rgba(94, 234, 212, 0.2);
+      }
+      100% {
+        box-shadow: inset 0 0 0 1px rgba(45, 212, 191, 0.04), 0 0 0 rgba(94, 234, 212, 0);
+      }
+    }
+
+    @keyframes check-draw {
+      0%,
+      48% {
+        stroke-dashoffset: 118;
+      }
+      72%,
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @media (max-width: 1220px), (max-height: 820px) {
+      .stage {
+        transform: scale(min(calc(100vw / 1220), calc(100vh / 820)));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage" aria-label="OpenAI Codex AI Agent Workflow animated course cover">
+    <svg class="flow-lines" viewBox="0 0 1200 781" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <linearGradient id="line" x1="206" y1="418" x2="1002" y2="230" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#38BDF8" stop-opacity="0"/>
+          <stop offset="0.35" stop-color="#2DD4BF" stop-opacity="0.48"/>
+          <stop offset="0.67" stop-color="#22C55E" stop-opacity="0.76"/>
+          <stop offset="1" stop-color="#22C55E" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <path class="main-line" d="M122 520C268 420 398 444 520 374C656 296 766 158 1078 226" stroke="url(#line)" stroke-width="3"/>
+      <path class="soft-line-a" d="M138 462C282 370 422 392 566 322C706 254 796 242 1058 330" stroke="#14B8A6" stroke-opacity="0.16" stroke-width="2"/>
+      <path class="soft-line-b" d="M132 578C318 498 436 534 590 450C758 358 872 398 1064 478" stroke="#38BDF8" stroke-opacity="0.14" stroke-width="2"/>
+    </svg>
+    <div class="scan-beam" aria-hidden="true"></div>
+    <div class="ring-field" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="particles" aria-hidden="true">
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+      <span class="particle"></span>
+    </div>
+
+    <section class="copy">
+      <p class="eyebrow">OpenAI</p>
+      <h1 class="codex-title">Codex</h1>
+      <p class="workflow">AI Agent Workflow</p>
+      <p class="sub">Idea to Deploy</p>
+    </section>
+
+    <aside class="panel" aria-hidden="true">
+      <div class="task">
+        <span class="dot"></span>
+        <span class="bars">
+          <span class="bar"></span>
+          <span class="bar small"></span>
+        </span>
+      </div>
+      <div class="task">
+        <span class="dot"></span>
+        <span class="bars">
+          <span class="bar"></span>
+          <span class="bar small"></span>
+        </span>
+      </div>
+      <div class="task">
+        <span class="dot"></span>
+        <span class="bars">
+          <span class="bar"></span>
+          <span class="bar small"></span>
+        </span>
+      </div>
+      <div class="done">
+        <svg class="check" viewBox="0 0 72 62" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 32L30 55L70 7"/>
+        </svg>
+        <span class="bars">
+          <span class="bar"></span>
+          <span class="bar small"></span>
+        </span>
+      </div>
+    </aside>
+  </main>
+
+  <script>
+    window.addEventListener("keydown", (event) => {
+      if (event.key.toLowerCase() !== "r") return;
+      const stage = document.querySelector(".stage");
+      stage.style.animation = "none";
+      document.querySelectorAll("*").forEach((node) => {
+        node.style.animationPlayState = "paused";
+      });
+      requestAnimationFrame(() => {
+        document.querySelectorAll("*").forEach((node) => {
+          node.style.animation = "";
+          node.style.animationPlayState = "";
+        });
+      });
+    });
+  </script>
+</body>
+</html>
