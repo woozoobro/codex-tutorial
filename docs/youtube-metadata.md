@@ -157,8 +157,22 @@ Codex를 처음 써보는 분들을 위한 실전 입문 영상입니다.
 
 ## 태그
 
+YouTube 태그는 일반 검색 키워드를 반복하는 용도보다, 시청자가 잘못 입력할 수 있는 철자, 띄어쓰기, 한영 표기 변형을 보정하는 용도로 쓴다. 제목과 설명란에 이미 들어간 핵심 키워드는 최소한으로만 반복하고, `Codex`, `OpenAI Codex`, `코덱스` 주변 오타와 변형을 우선한다.
+
+### 실제 입력 추천
+
 ```text
-Codex, OpenAI Codex, 코덱스, ChatGPT Codex, AI 에이전트, AI agent, AI 코딩, 바이브 코딩, vibe coding, 업무 자동화, 개발 자동화, AGENTS.md, GitHub, GitHub CLI, Next.js, Vercel, Gmail plugin, AI 리서치, AI 이미지 생성, AI로 웹사이트 만들기, 코딩 입문, 개발 입문, 생산성, 스타트업, 브랜드 기획, 랜딩페이지, 웹사이트 배포
+Codex 튜토리얼, Codex 사용법, Codex 설치, Codex 기초, codex tutorial, OpenAI Codex, Open AI Codex, OpenAI CodeX, OpenAI 코드엑스, ChatGPT Codex, GPT Codex, 코덱스, 코덱스 사용법, 코덱스 튜토리얼, 코덱스 설치, 코덱스 기초, 오픈AI 코덱스, 오픈에이아이 코덱스, 오픈ai 코덱스, 챗GPT 코덱스, 챗지피티 코덱스, 코드엑스, 코덱, 코댁스, AI 에이전트, AI agent, AI 코딩, 바이브 코딩, vibe coding, AGENTS.md, Next.js, Vercel
+```
+
+문자 수: 321/500
+
+### 교체 후보
+
+영상 반응을 보고 일부 태그를 바꿀 때는 아래 후보에서 교체한다. 조회 유입 검색어에 오타나 약어가 잡히면 그 표현을 우선한다.
+
+```text
+codex ai, codex agent, 코덱스 ai, 코덱스 에이전트, 오픈AI 코드엑스, 챗지피티 코드엑스, Chat GPT Codex, 코드X, 코덱쓰, 코댁쓰, AI로 웹사이트 만들기, 업무 자동화, 개발 자동화, GitHub CLI, Gmail plugin
 ```
 
 ## 해시태그 후보

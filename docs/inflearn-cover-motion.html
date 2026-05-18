@@ -694,6 +694,29 @@
   </main>
 
   <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const isExportMode = params.get("export") === "1";
+
+      window.__setExportTime = (rawTimeMs = 0) => {
+        const timeMs = Number.parseFloat(rawTimeMs) || 0;
+        document.getAnimations({ subtree: true }).forEach((animation) => {
+          animation.pause();
+          animation.currentTime = timeMs;
+        });
+        document.documentElement.dataset.exportReady = "true";
+        document.documentElement.dataset.exportTime = String(Math.round(timeMs));
+      };
+
+      if (isExportMode) {
+        window.addEventListener("load", () => {
+          requestAnimationFrame(() => {
+            window.__setExportTime(params.get("t") || 0);
+          });
+        }, { once: true });
+      }
+    })();
+
     window.addEventListener("keydown", (event) => {
       if (event.key.toLowerCase() !== "r") return;
       const stage = document.querySelector(".stage");
